@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CBT Exam app</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="quize.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-1g bg-body-tertiary">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+            <button class="previous btn bg-primary text-white">prev</button>
+            <div class="watch">
+                <div class="time">
+                    00:00:00
+                </div>
+                <div class="control">
+                    <button id="start">Start</button>
+                    <button id="stop">Stop</button>
+                    <button id="reset">Reset</button>
+                </div>
+            </div>
+
+            <button class="btn btn-danger mx-1 text-white submit_question_btn ">Submit Now</button>
+            <button class="next btn bg-primary text-white">next</button>
+        </div>
+    </nav>
+    <div class="container-fluid my-5">
+
+        <div class="question_container">
+
+            <div class="row question_1"></div>
+
+        </div>
+        
+        <div class="row footer">
+
+            <div class="col-md-9 mx-auto question_list"></div>
+
+        </div>
+    </div>
+   
+   
+        <script>
+
+            const start_btn =document.getElementById('start');
+            const time_le = document.querySelector('.watch .time');
+            const stop_btn =document.getElementById('stop');
+            const reset_btn =document.getElementById('reset');
+
+            let seconds = 0;
+            let interval = null;
+
+             //event listener
+
+                start_btn.addEventListener('click', start);
+                stop_btn.addEventListener('click', stop);
+                reset_btn.addEventListener('click', reset);
+
+                //update the timer
+
+                function timer(){
+                    seconds++;
+                    
+
+                    let hrs = Math.floor(seconds / 3600) ;
+                    let mins = Math.floor((seconds -(hrs * 3600)) / 60);
+                    let secs = seconds % 60;
+
+                    if(secs < 10) secs = '0' + secs;
+                    if(mins < 10) mins = '0' + mins;
+                    if(hrs < 10) hrs = '0' + hrs;
+
+                time_le.innerText = `${hrs}:${mins}:${secs}`; 
+
+                }
+
+                function start(){
+                    
+                    if(interval){
+                        return
+                    }
+                    interval = setInterval(timer, 1000);
+                }
+                    function stop (){
+                        clearInterval(interval);
+                        interval = null;
+
+                    }
+                    function reset(){
+
+                        stop();
+                        seconds = 0;
+                        time_le.innerText = '00:00:00';
+                    }
+                    
+
+            const Questions = [
+                {
+                    "question":"who is the first man, created by God?",
+                    "option":{
+                        "A":"Abel",
+                        "B":"Adam",
+                        "C":"Abraham",
+                        "D":"Noah",
+                    },
+                    "answer":"B"
+                },
+                {
+                    "question":"who is the first woman, created by God?",
+                    "option":{
+                        "A":"Noami",
+                        "B":"Rachel",
+                        "C":"Eve",
+                        "D":"sarah",
+                    },
+                    "answer":"C"
+                },
+
+                {
+                    "question":"who is the current national director of TKM in CRM?",
+                    "option":{
+                        "A":"Pst.Joseph mansah",
+                        "B":"Dr Ikechukwu Gregory Ugwu",
+                        "C":"Dr Bon Achumba",
+                        "D":"Pst. Gerry Ukah",
+                    },
+                    "answer":"B"
+                },
+
+                {
+                    "question":"who is the current national director of youth in CRM?",
+                    "option":{
+                        "A":"Pst.Toyin Olu Jacob",
+                        "B":"Dr Passy Amaraegbu",
+                        "C":"Dr Francis Binyoui",
+                        "D":"Pst.Julius Ajayi",
+                    },
+                        "answer":"A"
+                },
+
+                {
+                    "question":"what is the theme for the year 2023 in CRM national wide?",
+                    "option":{
+                        "A":"Enriched in all side",
+                        "B":"Enriched in all work of life",
+                        "C":"Enriched in everything",
+                        "D":"Enriched in every spiritual side ",
+                    },
+                        "answer":"C"
+                },
+
+                {
+                    "question":"Who is the director of the change we need Nigeria initiative?",
+                    "option":{
+                        "A":"Pst. Edwin Ezeh",
+                        "B":"Pst. Gab Baba",
+                        "C":"Pst.Alex Baba ",
+                        "D":"Dr. Robert Agbahia ",
+                    },
+                        "answer":"B"
+                },
+
+                {
+                    "question":"Who is the president of CRM political Academy?",
+                    "option":{
+                        "A":"Pst. Edwin Ezeh",
+                        "B":"Pst. Gab Baba",
+                        "C":"Pst.Alex Baba ",
+                        "D":"Dr. Robert Agbahia ",
+                    },
+                        "answer":"A"
+                },
+
+                {
+                    "question":"who is the national direction of CWL(Charismatic Renewal Ministries)",
+                    "option":{
+                        "A":"Pst. Edwin Ezeh",
+                        "B":"Pst. Gab Baba",
+                        "C":"Pst.Alex Baba ",
+                        "D":"Dr. Robert Agbahia ",
+                    },
+                        "answer":"C"
+                },
+                {
+                    "question":"Who is the national direction CRMEA{Charismatic Renewal Ministries Enterprise Agency} in CRM?",
+                    "option":{
+                        "A":"Pst. Edwin Ezeh",
+                        "B":"Pst. Gab Baba",
+                        "C":"Pst.Alex Baba ",
+                        "D":"Dr. Robert Agbahia ",
+                    },
+                        "answer":"C"
+                },
+                {
+                    "question":"Who is the regional overseer of North central in CRM?",
+                    "option":{
+                        "A":"Pst. Edwin Ezeh",
+                        "B":"Pst. Gab Baba",
+                        "C":"Pst.Alex Baba ",
+                        "D":"Dr. Robert Agbahia ",
+                    },
+                            "answer":"D"
+                },
+                {
+                    "question":"Who is the head of administrator in CRM?",
+                    "option":{
+                        "A":"Pst. Edwin Ezeh",
+                        "B":"Pst. Gab Baba",
+                        "C":"Pst.Alex Baba ",
+                        "D":"Dr. `Julius Iroha",
+                    },
+                        "answer":"D"
+                },
+                {
+                    "question":"Who is the state overseer OF FCT1 arm of CRM in abuja?",
+                    "option":{
+                        "A":"Barr. pst. A.S Agarry",
+                        "B":"Pst. John Drua",
+                        "C":"Pst.Alex Baba ",
+                        "D":"Pst. Mike Drua",
+                    },
+                        "answer":"A"
+                },
+                {
+                    "question":"what is the full meaning of FLOPA?",
+                    "option":{
+                        "A":"Faithful lover, obedient, prayerful, Authority",
+                        "B":"faithfullness, love,obedience, prayer, Authority ",
+                        "C":"fight, loyality, obedience, people, authority ",
+                        "D":"fight, liars, onto, prayer,action",
+                    },
+                        "answer":"B"
+                },
+                {
+                    "question":"what are the five piallars of CRM?",
+                    "option":{
+                        "A":"Faithful lover, obedient, prayerful, Authority",                            
+                        "B":"faithfullness, love,obedience, prayer, Authority ",
+                        "C":"fight, loyality, obedience, people, authority ",
+                        "D":"fight, liars, onto, prayer,action",
+                    },
+                        "answer":"B"
+                },
+                {
+                    "question":"when is our text for the theme this year is taken from?",
+                    "option":{
+                        "A":"2corinthians 9:10,11",
+                        "B":"2corinthians 9:8,9",
+                        "C":"2corinthians 9:5,7 ",
+                        "D":"Deut.1:3-8",
+                    },
+                        "answer":"A"
+                },
+                {
+                    "question":"who is the father of all nation?",
+                    "option":{
+                        "A":"Noah",
+                        "B":"Abraham",
+                        "C":"Jacob",
+                        "D":"Adam",
+                    },
+                        "answer":"B"
+                },
+                {
+                    "question":"Who is the state coordinator of CWL in FCT1 arm of CRM in abuja?",
+                    "option":{
+                        "A":"Profession, Mrs, Bumin Agarry",
+                        "B":"Mrs, Bridget Iyoha",
+                        "C":"Mrs, Ngozi Chigoke",
+                        "D":"Mrs, Veronica Okeke",
+                    },
+                        "answer":"D"
+                },
+
+                {
+                    "question":"Who is the state coordinator of mission and evangelical department in FCT1 arm of CRM in abuja?",
+                    "option":{
+                        "A":"Barr. pst. A.S Agarry",
+                        "B":"pst. John Dura",
+                        "C":"Dr. Pst. Kennedy Ozoemena",
+                        "D":"Pst. Mike Drua",
+                    },
+                        "answer":"C"
+                },
+                {
+                    "question":"Who is the state coordinator of TKM in FCT1 arm of CRM in abuja?",
+                    "option":{
+                        "A":"Barr. pst. A.S Agarry",
+                        "B":"pst. John Dura",
+                        "C":"Pst.Alex Baba ",
+                        "D":"Pst. Mike Drua",
+                    },
+                        "answer":"D"
+                },
+
+                {
+                    "question":"Who is the state overseer OF FCT2 arm of CRM in abuja?",
+                    "option":{
+                        "A":"Barr. pst. A.S Agarry",
+                        "B":"pst. Abraham Biu",
+                        "C":"Pst.Alex Baba ",
+                        "D":"Pst. Mike Drua",
+                    },
+                        "answer":"B"
+                },
+            ];
+
+
+
+                let question_list = document.querySelector(".question_list");
+                // let us build the buttons to list the question numbers
+
+                let q_list_display = "";  // variable to hold the list of the buttons
+
+                Questions.forEach( (_,i)=>{
+                    q_list_display += `<button class="btn btn-primary mx-1 text-white q_button" id="q_${i}"> ${ ( i + 1 ) }</button>`; 
+        
+                });
+
+            // display the buttons for each of the question indicating their numbers
+            question_list.innerHTML = q_list_display;
+
+            // build a function that will help display one question at a time
+            let previousBtn          = document.querySelector('.previous');
+            let nextBtn              = document.querySelector('.next');
+            let ques_container       = document.querySelector('.question_container');
+
+            let qBtns  = document.querySelectorAll('.q_button');
+
+            let currentIndex = 0;  // index to hold the current question
+            let TotalScore = 0;  //total scores of the quize
+
+            const selectQuestion = (questions, index)=>{
+
+                if(index > -1 && index < questions.length){
+                    ques_container.innerHTML = `<div class="row question_${index}">
+                                                    <div class="col-md-9 mx-auto question">
+                                                        <p class="fs-3"> ${index + 1} . ${questions[index].question }</p>
+                                                    </div>
+                                                    <div class="col-md-9 mx-auto options_${index}"> 
+                                                        <p class="fs-4">A <input type="radio" name="q" value="A" />  ${ questions[index].option.A }</p> 
+                                                        <p class="fs-4">B <input type="radio" name="q" value="B" />  ${ questions[index].option.B }</p>  
+                                                        <p class="fs-4">C <input type="radio" name="q" value="C" />  ${ questions[index].option.C }</p>  
+                                                        <p class="fs-4">D <input type="radio" name="q" value="D" />  ${ questions[index].option.D }</p>  
+                                                    </div>
+
+                                    
+                                        </div>`;
+    
+                                    };
+
+                //stating when the submit button should show
+                if(index == questions.length -1){
+                    document.querySelector('.submit_question_btn').classList.remove('hide');
+                }
+                else{
+                    document.querySelector('.submit_question_btn').classList.add('hide');
+                }
+
+                // control the previous button // disable or enable previous
+                if( index == 0) {
+                    previousBtn.setAttribute('disabled', 'disabled');
+
+                } 
+                else{
+
+                    previousBtn.removeAttribute('disabled');
+                }  
+                
+                // disable or enable Next Button
+                if ( index == questions.length-1) {
+
+                    nextBtn.setAttribute('disabled', 'disabled');
+
+                }
+                else{
+                    nextBtn.removeAttribute('disabled');
+                }
+
+
+    // locate the current question button and highlight it
+    
+    
+                    qBtns.forEach( (item) => {
+                            if( item.id.split('_')[1] == index ){
+                                item.classList.replace('btn-primary','btn-success'); 
+                            }else{ 
+                                item.classList.replace('btn-success','btn-primary');
+                            }
+                    });
+
+                    //call the answer question of the function
+                    answerQuestion(index);
+                    console.log(TotalScore);
+                }
+
+
+                // function to hndle the Next and previous buttons
+                nextBtn.onclick = function(){
+                currentIndex++; // increment the currentIndex by 1
+                // then select a question
+                selectQuestion(Questions, currentIndex);
+                }
+
+                previousBtn.onclick = function(){
+                currentIndex--; // increment the currentIndex by 1
+                // then select a question
+                selectQuestion(Questions, currentIndex);
+                }
+                //go to the a given question
+                qBtns.forEach((item) =>{
+                //attach a click event on each of the button
+                item.addEventListener('click', function(e){
+                    let question_index = parseInt(item.id.split('_')[1]); //get the index of the question from the button
+                    currentIndex       = question_index;           //set the currentIndex to the question_index
+                    selectQuestion( Questions , currentIndex);      //call the select question function 
+                });
+                })
+
+                selectQuestion( Questions , currentIndex);
+
+                function answerQuestion(index){
+                let options = document.getElementsByName('q');
+                //check when option is select for each question
+                options.forEach((option)=>{
+                        option.addEventListener('click', function(e){
+                        let userAnswer = option.valve;
+                        if(userAnswer == questions[index].answer){
+                            TotalScore+=5;
+                            //that's each question carry 5 mark 
+                        }
+                    })
+
+                })
+
+
+                }
+            //submit questions and answer
+            let subBtn = document.querySelector('.submit_question_btn');
+            subBtn.onclick = function(event){
+                //redirecting the user to the score page
+                location.href ='score.html';
+                sessionStorage.setItem('score', TotalScore);
+
+            }
+            //using the storage API to store the score
+            // two ways of doing that are:
+            //    sessionStorage: this store temporary on the RAM
+            //    localStorage: this store parmanently on the ROM
+            sessionStorage.setItem('score', TotalScore);
+
+
+
+
+            let inputs = document.getElementsByTagName('input');
+            let btnsub = document.querySelector('.submit_question_btn').classList;
+            console.log(inputs);
+            console.log(btnsub.classList);
+            console.log(inputs.classList.value);
+
+
+
+
+
+
+
+        </script>
+    
+    </body>
+</html>
